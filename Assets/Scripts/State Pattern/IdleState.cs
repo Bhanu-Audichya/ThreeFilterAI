@@ -5,16 +5,21 @@ using UnityEngine;
 public class IdleState : AIBaseState
 {
 
-    public override void Entered(AIStateManager state)
+    public override void Execute(AIStateManager state)
     {
-        if(state.target != null) 
+        if(state.target == null)
+        {
+            state.animator.SetBool("shouldFollow", false);
+        }
+        
+
+    }
+
+    public override void Updating(AIStateManager state)
+    {
+        if(state.target!= null) 
         {
             state.SwitchState(state.followingState);
-        }
-        else
-        {
-
-            state.animator.Play("Idle_State");
         }
     }
 }

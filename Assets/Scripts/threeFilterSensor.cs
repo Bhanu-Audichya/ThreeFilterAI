@@ -33,11 +33,20 @@ public class threeFilterSensor : MonoBehaviour
                 if(!Physics.Linecast(transform.position,collider.bounds.center,obstacleLayer))
                 {
                     detectedObject = collider;
-                    agent.SetDestination(detectedObject.transform.position);
+                    if(detectedObject!= null)
+                    {
+                        agent.destination = detectedObject.transform.position;
+                        agent.isStopped = false;
+                    }
+                    //agent.SetDestination(detectedObject.transform.position);
                     break;
                     
                 }
             }
+        }
+        if(detectedObject==null)
+        {
+            agent.isStopped = true;
         }
     }
 }

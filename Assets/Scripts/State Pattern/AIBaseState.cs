@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class AIBaseState
 {
-    public abstract void Entered(AIStateManager state);
+    public abstract void Execute(AIStateManager state);
+    public abstract void Updating(AIStateManager state);
     
 }

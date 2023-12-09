@@ -18,7 +18,7 @@ public class AIStateManager : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         currentState = idleState;
-        currentState.Entered(this);
+        currentState.Execute(this);
     }
 
     // Update is called once per frame
@@ -29,12 +29,19 @@ public class AIStateManager : MonoBehaviour
             target = sensor.detectedObject;
         }
         else
+        {
             target = null;
+        }
+        if(currentState!=null)
+        {
+            currentState.Updating(this);
+        }
     }
 
     public void SwitchState(AIBaseState newState)
     {
+        Debug.Log(newState + "22222");
         currentState = newState;
-        currentState.Entered(this);
+        currentState.Execute(this);
     }
 }
